@@ -43,10 +43,10 @@
 <div><label>Bracket size</label><select id="bracketSize"></select></div>
 </div>
 <div class="row">
-<div><label>Quantity (priced per inch × quantity)</label><input id="bracketQty" type="number" min="1" step="1" value="1"></div>
+<div><label>Bracket quantity (individual brackets)</label><input id="bracketQty" type="number" min="1" step="1" value="2"></div>
 <div><label>Rate (₹ per inch)</label><input id="bracketRate" type="number" min="0" step="0.01"></div>
 </div>
-<div class="note">Bracket weights are displayed for reference only. Price is calculated by length in inches × rate per inch × entered quantity. Confirm whether quantity means individual brackets or pairs before issuing a quotation.</div>
+<div class="note">Enter the number of individual brackets required. For example, quantity 4 means four brackets, even for a bracket-pair design. Weight is shown for reference only; price = size in inches × rate per inch × bracket quantity.</div>
 <div class="actions"><button class="btn" id="addBracket">Add bracket line</button></div>
 <h2 style="margin-top:22px">3. Add shelves</h2>
 <div class="row">
@@ -121,7 +121,7 @@ function selectedShelfWeight(){return DATA.shelves[$("shelfWidth").value][$("she
 function updateWeightDisplays(){$("shelfWeightDisplay").value=fmt(selectedShelfWeight())+" kg / shelf";$("supportWeightDisplay").value=fmt(DATA.support[$("supportLength").value][$("supportGauge").value])+" kg / support";$("plateWeightDisplay").value=fmt(DATA.plate[$("plateLength").value])+" kg";renderPreview()}
 function renderPreview(){const count=items.filter(i=>i.kind==="Shelf").reduce((s,i)=>s+i.qty,0);const n=Math.max(2,Math.min(6,count||4));$("shelfDrawing").innerHTML=Array.from({length:n},(_,i)=>{const y=24+i*(124/(n-1));return '<path d="M25 '+y+'H115"/>'}).join("");$("previewText").textContent=($("rackName").value||"Display rack")+" · Channel "+$("channelType").value+" G · "+count+" shelf(s) in added lines"}
 function addItem(item){items.push({...item,id:Date.now()+Math.random()});renderItems();renderPreview()}
-function addBracket(){const type=$("bracketType").value,size=Number($("bracketSize").value),qty=Number($("bracketQty").value),rate=Number($("bracketRate").value);if(!(qty>0)||!(rate>=0)){alert("Enter a valid bracket quantity and rate.");return}addItem({kind:"Bracket",name:DATA.brackets[type].name,spec:size+' inch',qty,weight:DATA.brackets[type].sizes[size]*qty,price:size*rate*qty});}
+function addBracket(){const type=$("bracketType").value,size=Number($("bracketSize").value),qty=Number($("bracketQty").value),rate=Number($("bracketRate").value);if(!(qty>0)||!(rate>=0)){alert("Enter a valid bracket quantity and rate.");return}addItem({kind:"Bracket",name:DATA.brackets[type].name,spec:size+' inch each',qty,weight:DATA.brackets[type].sizes[size]*qty,price:size*rate*qty});}
 function addShelf(){const w=$("shelfWidth").value,d=$("shelfDepth").value,g=$("shelfGauge").value,qty=Number($("shelfQty").value),rate=Number($("shelfRate").value);if(!(qty>0)||!(rate>=0)){alert("Enter a valid shelf quantity and rate per kg.");return}addItem({kind:"Shelf",name:"Shelf "+w+' × '+d+' inch',spec:g+" Gauge",qty,weight:selectedShelfWeight()*qty,price:selectedShelfWeight()*qty*rate});}
 function renderItems(){const body=$("itemsBody");if(!items.length){body.innerHTML='<tr><td colspan="6" class="empty">No bracket or shelf lines added yet.</td></tr>';return}body.innerHTML=items.map(i=>'<tr><td>'+i.kind+' · '+i.name+'</td><td>'+i.spec+'</td><td>'+i.qty+'</td><td>'+fmt(i.weight)+' kg</td><td>'+money(i.price)+'</td><td class="no-print"><button class="btn small secondary" onclick="removeItem(\''+i.id+'\')">Remove</button></td></tr>').join('')}
 function removeItem(id){items=items.filter(i=>String(i.id)!==String(id));renderItems();renderPreview()}
