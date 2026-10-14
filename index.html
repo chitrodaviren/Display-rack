@@ -1,113 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#b91c1c"><title>Royal Rack | Display Rack Calculator</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#a71920"><title>Royal Rack | Display Rack Calculator</title>
 <style>
-:root{--red:#b91c1c;--gold:#f2b705;--ink:#1f2937;--muted:#64748b;--line:#e2e8f0;--bg:#f4f6f8}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}header{background:#20252b;color:white;padding:20px 16px;border-bottom:5px solid var(--gold)}header .wrap{max-width:1180px;margin:auto}header h1{margin:0;font-size:clamp(22px,3vw,32px)}header p{margin:6px 0 0;color:#d1d5db}.wrap{max-width:1180px;margin:20px auto;padding:0 14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 4px 16px #1111;min-width:0}.card h2{font-size:18px;margin:0 0 14px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.row.three{grid-template-columns:repeat(3,minmax(0,1fr))}label{font-size:12px;font-weight:700;color:#475569;display:block;margin:8px 0 5px}input,select{width:100%;min-width:0;padding:10px;border:1px solid #cbd5e1;border-radius:8px;background:white;font-size:14px;color:#111827}input[type=checkbox]{width:auto}.btn{border:0;border-radius:9px;padding:11px 14px;font-weight:700;cursor:pointer;background:var(--red);color:white}.btn.secondary{background:#334155}.btn.gold{background:var(--gold);color:#111827}.btn.small{padding:6px 9px;font-size:12px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.note{font-size:12px;color:var(--muted);line-height:1.5}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 7px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#f8fafc;color:#475569}.empty{color:var(--muted);padding:14px 0}.visual{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center}.visual svg{width:100%;max-height:180px}.summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:12px}.metric span{display:block;font-size:12px;color:var(--muted)}.metric strong{display:block;font-size:20px;margin-top:5px;overflow-wrap:anywhere}.grand{background:#20252b;color:white;border-radius:12px;padding:16px;margin-top:12px}.grand strong{font-size:27px;color:#ffd44a}.full{grid-column:1/-1}.hidden{display:none!important}.tag{display:inline-block;background:#fff1f2;color:#991b1b;padding:4px 7px;border-radius:6px;font-size:11px;font-weight:bold}@media(max-width:760px){.grid{grid-template-columns:1fr}.row.three{grid-template-columns:repeat(2,minmax(0,1fr))}.visual{grid-template-columns:110px 1fr}.summary{grid-template-columns:1fr 1fr}.card{padding:14px}}@media print{header{background:white;color:black;border-bottom:2px solid black}header p{color:#333}.btn,.no-print{display:none!important}body{background:white}.card{box-shadow:none;break-inside:avoid}.wrap{max-width:none;margin:8px auto}.grid{grid-template-columns:1fr 1fr}}
+:root{--red:#a71920;--red-dark:#82131a;--gold:#f4bd22;--ink:#20252b;--muted:#667085;--line:#e4e7ec;--bg:#f5f6f8;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);font-size:15px;line-height:1.4;padding-bottom:92px}
+header{background:var(--ink);color:#fff;padding:16px;border-bottom:4px solid var(--gold)}.head{max-width:760px;margin:auto;display:flex;align-items:center;gap:12px}.brandmark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--red);color:white;font-weight:900;font-size:17px;flex-shrink:0;border:2px solid var(--gold)}h1{font-size:20px;line-height:1.15;margin:0}header p{font-size:12px;color:#d0d5dd;margin:4px 0 0}
+main{max-width:760px;margin:14px auto;padding:0 12px}.intro{padding:2px 2px 12px}.intro h2{font-size:19px;margin:0 0 4px}.intro p{font-size:13px;color:var(--muted);margin:0}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:14px;margin:0 0 12px;overflow:hidden;box-shadow:0 2px 8px #1018280a}
+.panel summary{list-style:none;cursor:pointer;padding:15px;display:flex;align-items:center;gap:11px;font-weight:750;font-size:15px;min-height:58px}.panel summary::-webkit-details-marker{display:none}.step{width:30px;height:30px;display:grid;place-items:center;background:#fff1f1;color:var(--red);border-radius:9px;font-weight:850;flex-shrink:0}.sumtext{flex:1}.hint{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}.chev{color:var(--muted);font-size:18px;transition:transform .15s}details[open] .chev{transform:rotate(180deg)}.panel-body{padding:0 15px 16px;border-top:1px solid #f0f1f3}
+label{display:block;font-size:12px;font-weight:700;color:#475467;margin:12px 0 6px}input,select{font:inherit;font-size:16px;width:100%;min-height:45px;border:1px solid #d0d5dd;border-radius:9px;background:#fff;padding:10px 11px;color:var(--ink);outline:none}input:focus,select:focus{border-color:var(--red);box-shadow:0 0 0 3px #a7192018}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.note{font-size:12px;color:var(--muted);line-height:1.45;margin:10px 0 0}.btn{border:0;border-radius:10px;min-height:44px;padding:11px 14px;font:inherit;font-weight:750;cursor:pointer;background:var(--red);color:#fff}.btn:active{transform:scale(.99)}.btn.secondary{background:#f2f4f7;color:#344054;border:1px solid #e4e7ec}.btn.gold{background:var(--gold);color:#211b0a}.btn.full{width:100%;margin-top:12px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions .btn{flex:1}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#f9fafb;color:#475467;font-size:11px;text-transform:uppercase;letter-spacing:.03em}tbody tr:last-child td{border-bottom:0}.empty{padding:18px;text-align:center;color:var(--muted);white-space:normal}
+.preview{display:flex;align-items:center;gap:12px;background:#f9fafb;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:12px}.preview svg{width:72px;height:92px;flex-shrink:0}.preview p{margin:3px 0;font-size:13px}.preview .note{margin-top:3px}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.metric{border:1px solid var(--line);background:#fafafa;border-radius:10px;padding:12px;min-width:0}.metric span{display:block;font-size:11px;color:var(--muted);line-height:1.3}.metric strong{display:block;font-size:18px;margin-top:5px;overflow-wrap:anywhere}.metric.emphasis{background:#fff5f5;border-color:#f3c5c7}.metric.emphasis strong{color:var(--red)}
+.grand{background:var(--ink);color:white;border-radius:12px;padding:16px;margin-top:12px}.grand .caption{font-size:12px;color:#d0d5dd}.grand strong{display:block;font-size:28px;color:var(--gold);margin-top:4px}
+.bottom-bar{position:fixed;z-index:10;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);box-shadow:0 -5px 18px #10182812;padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:flex;align-items:center;gap:12px}.bottom-total{flex:1;min-width:0}.bottom-total span{font-size:11px;color:var(--muted);display:block}.bottom-total strong{font-size:18px;white-space:nowrap}.bottom-bar .btn{min-width:135px}
+.footer{text-align:center;color:var(--muted);font-size:11px;padding:6px 0 14px}.hidden{display:none!important}
+@media(min-width:650px){main{padding:0 18px}.panel summary{padding:17px 18px}.panel-body{padding:0 18px 18px}.row.wide{grid-template-columns:repeat(3,minmax(0,1fr))}.metrics{grid-template-columns:repeat(4,minmax(0,1fr))}.bottom-bar{left:50%;right:auto;transform:translateX(-50%);width:min(760px,100%);border:1px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0}}
+@media(max-width:370px){.row{grid-template-columns:1fr;gap:0}.metrics{grid-template-columns:1fr 1fr}.metric{padding:10px}.metric strong{font-size:16px}.bottom-bar .btn{min-width:118px;padding:10px}.bottom-total strong{font-size:16px}}
+@media print{body{padding:0;background:#fff}header{background:#fff;color:#111;border-bottom:2px solid #111}header p{color:#333}.bottom-bar,.no-print,.actions{display:none!important}main{max-width:none;margin:0;padding:0}.panel{box-shadow:none;break-inside:avoid}details:not([open]) .panel-body{display:block}.panel summary .chev{display:none}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><h1>ROYAL RACK <span style="color:#ffd44a">|</span> Display Rack Calculator</h1><p>Internal quotation tool · Excel-based component weights · GST 18% (CGST 9% + SGST 9%)</p></div></header>
-<main class="wrap">
-<div class="grid">
-<section class="card">
-<h2>1. Rack setup</h2>
-<div class="row">
-<div><label>Configuration</label><select id="config"><option value="custom">Custom rack</option><option value="saved">Load saved standard design</option></select></div>
-<div id="presetWrap" class="hidden"><label>Saved design</label><select id="preset"></select></div>
+<header><div class="head"><div class="brandmark">RR</div><div><h1>ROYAL RACK</h1><p>Display Rack Calculator · Staff use</p></div></div></header>
+<main>
+<div class="intro"><h2>Build a rack quotation</h2><p>Choose only the components you need. Open each step, enter quantities, then calculate.</p></div>
+<details class="panel" open>
+<summary><span class="step">1</span><span class="sumtext">Rack & channel<span class="hint">Rack length, channel type and quantity</span></span><span class="chev">⌄</span></summary>
+<div class="panel-body">
+<div class="row"><div><label>Rack running length (ft)</label><input id="rackLength" type="number" min="0.1" step="0.1" value="4"></div><div><label>Rack name (optional)</label><input id="rackName" placeholder="e.g. 4 ft display rack"></div></div>
+<div class="row"><div><label>Channel gauge</label><select id="channelType"><option value="16">16 Gauge</option><option value="14">14 Gauge</option></select></div><div><label>Channel length</label><select id="channelLength"><option value="6">6 ft</option><option value="6.5">6.5 ft</option><option value="7">7 ft</option><option value="8">8 ft</option></select></div></div>
+<div class="row"><div><label>Channel quantity</label><input id="channelQty" type="number" min="0" step="1" value="2"></div><div><label>Rate (₹ / ft)</label><input id="channelRate" type="number" min="0" step="0.01" value="95"></div></div>
+<div class="note">Enter the number of channels actually required. Weight and default rates follow the calculator's current product data.</div>
+<div class="preview"><svg viewBox="0 0 90 110" aria-label="Rack preview"><g stroke="#475467" stroke-width="5" stroke-linecap="round"><path d="M20 10V100M70 10V100"/></g><g id="shelfDrawing" stroke="#a71920" stroke-width="4" stroke-linecap="round"><path d="M15 24H75M15 45H75M15 66H75M15 87H75"/></g></svg><div><p><strong>Rack preview</strong></p><p id="previewText">Custom display rack</p><p class="note">Simple guide only; not a manufacturing drawing.</p></div></div>
+</div></details>
+<details class="panel">
+<summary><span class="step">2</span><span class="sumtext">Brackets<span class="hint">Select design, size and individual quantity</span></span><span class="chev">⌄</span></summary>
+<div class="panel-body">
+<label>Bracket design</label><select id="bracketType"><option value="pair14">Bracket Pair 14 G</option><option value="pair12">Bracket Pair 12 G</option><option value="glass14">Glass Bracket 14 G</option></select>
+<div class="row"><div><label>Bracket size</label><select id="bracketSize"></select></div><div><label>Quantity (individual brackets)</label><input id="bracketQty" type="number" min="1" step="1" value="2"></div></div>
+<label>Selling rate (₹ / inch)</label><input id="bracketRate" type="number" min="0" step="0.01">
+<p class="note">Enter the number of individual brackets, including when selecting a bracket-pair design. Weight is for reference; price = size × rate per inch × quantity.</p>
+<button class="btn full" id="addBracket">＋ Add bracket</button>
+</div></details>
+<details class="panel">
+<summary><span class="step">3</span><span class="sumtext">Shelves<span class="hint">Add multiple sizes and quantities</span></span><span class="chev">⌄</span></summary>
+<div class="panel-body">
+<div class="row"><div><label>Shelf width</label><select id="shelfWidth"><option value="47">47 inches</option><option value="36">36 inches</option></select></div><div><label>Shelf depth</label><select id="shelfDepth"><option value="6">6 inches</option><option value="12">12 inches</option><option value="15">15 inches</option><option value="18">18 inches</option></select></div></div>
+<div class="row"><div><label>Gauge</label><select id="shelfGauge"><option>24</option><option>22</option><option>20</option><option>18</option></select></div><div><label>Quantity</label><input id="shelfQty" type="number" min="1" step="1" value="1"></div></div>
+<div class="row"><div><label>Selling rate (₹ / kg)</label><input id="shelfRate" type="number" min="0" step="0.01" value="0"></div><div><label>Weight per shelf</label><input id="shelfWeightDisplay" readonly></div></div>
+<button class="btn full" id="addShelf">＋ Add shelf</button>
+<p class="note">Add one shelf size at a time. Repeat for each different size needed.</p>
+</div></details>
+<details class="panel">
+<summary><span class="step">4</span><span class="sumtext">Optional extras<span class="hint">C-channel support and name plate</span></span><span class="chev">⌄</span></summary>
+<div class="panel-body">
+<h3 style="font-size:14px;margin:14px 0 0">C-channel support</h3>
+<label>Include support?</label><select id="supportEnabled"><option value="no">No support</option><option value="yes">Add support</option></select>
+<div class="row"><div><label>Support length</label><select id="supportLength"><option value="4">4 feet</option><option value="3">3 feet</option></select></div><div><label>Gauge</label><select id="supportGauge"><option>24</option><option>22</option><option>20</option><option>18</option></select></div></div>
+<div class="row"><div><label>Quantity</label><input id="supportQty" type="number" min="0" step="1" value="1"></div><div><label>Rate (₹ / kg)</label><input id="supportRate" type="number" min="0" step="0.01" value="0"></div></div>
+<p class="note">Weight per support: <strong id="supportWeightDisplay">—</strong></p>
+<hr style="border:0;border-top:1px solid #eaecf0;margin:18px 0">
+<h3 style="font-size:14px;margin:0">Name plate</h3>
+<label>Include name plate?</label><select id="plateEnabled"><option value="no">No name plate</option><option value="yes">Add name plate</option></select>
+<div class="row"><div><label>Length</label><select id="plateLength"><option value="4">4 feet</option><option value="3">3 feet</option></select></div><div><label>Rate (₹ / kg)</label><input id="plateRate" type="number" min="0" step="0.01" value="0"></div></div>
+<p class="note">Name plate weight: <strong id="plateWeightDisplay">—</strong></p>
+</div></details>
+<details class="panel" open>
+<summary><span class="step">5</span><span class="sumtext">Selected items<span class="hint">Review the components you added</span></span><span class="chev">⌄</span></summary>
+<div class="panel-body">
+<div class="tablewrap"><table><thead><tr><th>Component</th><th>Specification</th><th>Qty</th><th>Weight</th><th>Price</th><th class="no-print">Action</th></tr></thead><tbody id="itemsBody"><tr><td colspan="6" class="empty">No brackets or shelves added yet.</td></tr></tbody></table></div>
+<div class="actions no-print"><button class="btn secondary" id="clearItems">Clear brackets & shelves</button><button class="btn secondary" id="savePreset">Save as standard design</button></div>
+</div></details>
+<details class="panel" open>
+<summary><span class="step">6</span><span class="sumtext">Quotation total<span class="hint">Weight, GST and running-foot price</span></span><span class="chev">⌄</span></summary>
+<div class="panel-body">
+<div class="metrics">
+<div class="metric"><span>Total component weight</span><strong id="totalWeight">0.00 kg</strong></div>
+<div class="metric"><span>Price before GST</span><strong id="beforeGST">₹0.00</strong></div>
+<div class="metric"><span>CGST · 9%</span><strong id="cgst">₹0.00</strong></div>
+<div class="metric"><span>SGST · 9%</span><strong id="sgst">₹0.00</strong></div>
+<div class="metric"><span>Total GST · 18%</span><strong id="totalGST">₹0.00</strong></div>
+<div class="metric"><span>Running length</span><strong id="runningFeet">0.00 ft</strong></div>
+<div class="metric"><span>Price per ft before GST</span><strong id="perFootBefore">₹0.00/ft</strong></div>
+<div class="metric"><span>Price per ft incl. GST</span><strong id="perFootAfter">₹0.00/ft</strong></div>
 </div>
-<div class="row">
-<div><label>Rack running length (ft) — for price/ft</label><input id="rackLength" type="number" min="0.1" step="0.1" value="4"></div>
-<div><label>Rack description (optional)</label><input id="rackName" placeholder="e.g. 4 ft display rack"></div>
-</div>
-<div class="row">
-<div><label>Channel type</label><select id="channelType"><option value="16">Channel 16 Gauge</option><option value="14">Channel 14 Gauge</option></select></div>
-<div><label>Channel length</label><select id="channelLength"><option value="6">6 ft</option><option value="6.5">6.5 ft</option><option value="7">7 ft</option><option value="8">8 ft</option></select></div>
-</div>
-<div class="row">
-<div><label>Channel quantity (as required)</label><input id="channelQty" type="number" min="0" step="1" value="2"></div>
-<div><label>Channel selling rate (₹/ft)</label><input id="channelRate" type="number" min="0" step="0.01" value="95"></div>
-</div>
-<div class="note">Channel weights and listed rates are taken from your Excel sheet. Channel quantity is user-controlled; no automatic quantity assumption.</div>
-<div class="visual" style="margin-top:12px">
-<svg viewBox="0 0 140 170" role="img" aria-label="Simple rack illustration"><g stroke="#475569" stroke-width="5" stroke-linecap="round"><path d="M32 18V150M108 18V150"/></g><g id="shelfDrawing" stroke="#b91c1c" stroke-width="5" stroke-linecap="round"><path d="M25 38H115M25 68H115M25 98H115M25 128H115"/></g><g stroke="#f2b705" stroke-width="2"><path d="M26 38L32 32M108 32L114 38M26 68L32 62M108 62L114 68M26 98L32 92M108 92L114 98M26 128L32 122M108 122L114 128"/></g></svg>
-<div><span class="tag">Live preview</span><p id="previewText">Display rack · custom configuration</p><p class="note">Illustration is a schematic guide, not a manufacturing drawing. It updates with shelf count and selected rack options.</p></div>
-</div>
-</section>
-<section class="card">
-<h2>2. Add brackets</h2>
-<div class="row">
-<div><label>Bracket design</label><select id="bracketType"><option value="pair14">Bracket Pair 14 G</option><option value="pair12">Bracket Pair 12 G</option><option value="glass14">Glass Bracket 14 G</option></select></div>
-<div><label>Bracket size</label><select id="bracketSize"></select></div>
-</div>
-<div class="row">
-<div><label>Bracket quantity (individual brackets)</label><input id="bracketQty" type="number" min="1" step="1" value="2"></div>
-<div><label>Rate (₹ per inch)</label><input id="bracketRate" type="number" min="0" step="0.01"></div>
-</div>
-<div class="note">Enter the number of individual brackets required. For example, quantity 4 means four brackets, even for a bracket-pair design. Weight is shown for reference only; price = size in inches × rate per inch × bracket quantity.</div>
-<div class="actions"><button class="btn" id="addBracket">Add bracket line</button></div>
-<h2 style="margin-top:22px">3. Add shelves</h2>
-<div class="row">
-<div><label>Shelf width</label><select id="shelfWidth"><option value="47">47 inches</option><option value="36">36 inches</option></select></div>
-<div><label>Shelf depth</label><select id="shelfDepth"><option value="6">6 inches</option><option value="12">12 inches</option><option value="15">15 inches</option><option value="18">18 inches</option></select></div>
-</div>
-<div class="row">
-<div><label>Shelf gauge</label><select id="shelfGauge"><option>24</option><option>22</option><option>20</option><option>18</option></select></div>
-<div><label>Quantity</label><input id="shelfQty" type="number" min="1" step="1" value="1"></div>
-</div>
-<div class="row">
-<div><label>Shelf rate (₹/kg)</label><input id="shelfRate" type="number" min="0" step="0.01" value="0"></div>
-<div><label>Selected shelf weight</label><input id="shelfWeightDisplay" readonly></div>
-</div>
-<div class="actions"><button class="btn" id="addShelf">Add shelf line</button></div>
-</section>
-<section class="card">
-<h2>4. Optional C-channel support</h2>
-<div class="row">
-<div><label>Include support?</label><select id="supportEnabled"><option value="no">No support</option><option value="yes">Add support</option></select></div>
-<div><label>Support length</label><select id="supportLength"><option value="4">4 feet</option><option value="3">3 feet</option></select></div>
-</div>
-<div class="row">
-<div><label>Support gauge</label><select id="supportGauge"><option>24</option><option>22</option><option>20</option><option>18</option></select></div>
-<div><label>Support quantity</label><input id="supportQty" type="number" min="0" step="1" value="1"></div>
-</div>
-<div class="row"><div><label>Support rate (₹/kg)</label><input id="supportRate" type="number" min="0" step="0.01" value="0"></div><div><label>Weight per support</label><input id="supportWeightDisplay" readonly></div></div>
-<p class="note">C-channel support is optional and is intended to increase rack strength. Weight comes from your Excel sheet; selling rate is entered by staff.</p>
-<hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
-<h2>5. Optional name plate</h2>
-<div class="row">
-<div><label>Include name plate?</label><select id="plateEnabled"><option value="no">No name plate</option><option value="yes">Add name plate</option></select></div>
-<div><label>Name plate length</label><select id="plateLength"><option value="4">4 feet</option><option value="3">3 feet</option></select></div>
-</div>
-<div class="row"><div><label>Name plate rate (₹/kg)</label><input id="plateRate" type="number" min="0" step="0.01" value="0"></div><div><label>Weight</label><input id="plateWeightDisplay" readonly></div></div>
-<div class="note">Name plate price is calculated by weight × staff-entered rate per kg.</div>
-</section>
-<section class="card full">
-<h2>6. Selected components</h2>
-<div class="tablewrap"><table><thead><tr><th>Component</th><th>Specification</th><th>Qty</th><th>Weight</th><th>Price before GST</th><th class="no-print">Action</th></tr></thead><tbody id="itemsBody"><tr><td colspan="6" class="empty">Add bracket and shelf lines. Channel, support and name plate are calculated from the setup above.</td></tr></tbody></table></div>
-<div class="actions no-print"><button class="btn secondary" id="clearItems">Clear bracket/shelf lines</button><button class="btn secondary" id="savePreset">Save current setup as standard design</button><button class="btn gold" id="calculate">Calculate quotation</button><button class="btn secondary" id="print">Print / Save PDF</button></div>
-</section>
-<section class="card full">
-<h2>7. Quotation summary</h2>
-<div class="summary">
-<div class="metric"><span>Total rack/component weight</span><strong id="totalWeight">0.00 kg</strong></div>
-<div class="metric"><span>Total price before GST</span><strong id="beforeGST">₹0.00</strong></div>
-<div class="metric"><span>CGST (9%)</span><strong id="cgst">₹0.00</strong></div>
-<div class="metric"><span>SGST (9%)</span><strong id="sgst">₹0.00</strong></div>
-<div class="metric"><span>Total GST (18%)</span><strong id="totalGST">₹0.00</strong></div>
-<div class="metric"><span>Running feet</span><strong id="runningFeet">0.00 ft</strong></div>
-<div class="metric"><span>Price per running foot before GST</span><strong id="perFootBefore">₹0.00/ft</strong></div>
-<div class="metric"><span>Price per running foot incl. GST</span><strong id="perFootAfter">₹0.00/ft</strong></div>
-</div>
-<div class="grand"><div>Grand Total Including GST</div><strong id="grandTotal">₹0.00</strong><div class="note" style="color:#e5e7eb;margin-top:6px">GST calculation: CGST 9% + SGST 9% = 18%. Confirm tax applicability for the specific invoice before billing.</div></div>
-<p class="note">Weights are based on the uploaded workbook. Component prices are calculated using the selected channel rate per foot, bracket rate per inch, and staff-entered rate per kg for shelves, supports, and name plates. Enter a rate for every weight-priced component before quoting.</p>
-</section>
-</div>
-<p class="note" style="text-align:center;margin:18px 0">Royal Rack · Internal calculator · Saved standard designs are stored in this browser on this device.</p>
+<div class="grand"><span class="caption">GRAND TOTAL · INCLUDING GST</span><strong id="grandTotal">₹0.00</strong></div>
+<p class="note">GST is displayed as CGST 9% + SGST 9%. Confirm applicable tax treatment before issuing the final invoice.</p>
+<button class="btn full" id="print">Print / Save quotation as PDF</button>
+</div></details>
+<p class="footer">Royal Rack · Simple mobile-first quotation tool</p>
 </main>
+<div class="bottom-bar"><div class="bottom-total"><span>Grand total incl. GST</span><strong id="quickGrand">₹0.00</strong></div><button class="btn" id="quickCalculate">Calculate total ↓</button></div>
 <script>
+
 const DATA={
  channels:{16:{rate:95,weights:{6:1.2,6.5:1.3,7:1.4,8:1.6}},14:{rate:105,weights:{6:1.6,6.5:1.73,7:1.86,8:2.13}}},
  brackets:{pair14:{name:"Bracket Pair 14 G",rate:12,sizes:{6:.32,12:.56,15:.68,18:.78}},pair12:{name:"Bracket Pair 12 G",rate:14,sizes:{6:.41,12:.7,15:.85,18:.97}},glass14:{name:"Glass Bracket 14 G",rate:14.5,sizes:{5:.38,11:.61,14:.75,17:.87}}},
@@ -126,12 +113,14 @@ function addShelf(){const w=$("shelfWidth").value,d=$("shelfDepth").value,g=$("s
 function renderItems(){const body=$("itemsBody");if(!items.length){body.innerHTML='<tr><td colspan="6" class="empty">No bracket or shelf lines added yet.</td></tr>';return}body.innerHTML=items.map(i=>'<tr><td>'+i.kind+' · '+i.name+'</td><td>'+i.spec+'</td><td>'+i.qty+'</td><td>'+fmt(i.weight)+' kg</td><td>'+money(i.price)+'</td><td class="no-print"><button class="btn small secondary" onclick="removeItem(\''+i.id+'\')">Remove</button></td></tr>').join('')}
 function removeItem(id){items=items.filter(i=>String(i.id)!==String(id));renderItems();renderPreview()}
 function getTotals(){const chLen=Number($("channelLength").value),chQty=Math.max(0,Number($("channelQty").value)||0),chGauge=$("channelType").value,chWeight=DATA.channels[chGauge].weights[chLen]*chQty,chPrice=chLen*Number($("channelRate").value||0)*chQty;let weight=chWeight,price=chPrice,lines=[{name:"Channel "+chGauge+" Gauge",spec:chLen+" ft",qty:chQty,weight:chWeight,price:chPrice}];items.forEach(i=>{weight+=i.weight;price+=i.price;lines.push(i)});if($("supportEnabled").value==="yes"){const len=Number($("supportLength").value),g=$("supportGauge").value,qty=Math.max(0,Number($("supportQty").value)||0),w=DATA.support[len][g]*qty,p=w*Number($("supportRate").value||0);weight+=w;price+=p;lines.push({name:"C-channel support",spec:len+" ft · "+g+" G",qty,weight:w,price:p})}if($("plateEnabled").value==="yes"){const len=Number($("plateLength").value),w=DATA.plate[len],p=w*Number($("plateRate").value||0);weight+=w;price+=p;lines.push({name:"Name plate",spec:len+" ft · 0.8 mm",qty:1,weight:w,price:p})}return {weight,price,lines}}
-function calculate(){const t=getTotals(),gst=t.price*.18,feet=Number($("rackLength").value)||0,after=t.price+gst;$("totalWeight").textContent=fmt(t.weight)+" kg";$("beforeGST").textContent=money(t.price);$("cgst").textContent=money(t.price*.09);$("sgst").textContent=money(t.price*.09);$("totalGST").textContent=money(gst);$("runningFeet").textContent=fmt(feet)+" ft";$("perFootBefore").textContent=money(feet>0?t.price/feet:0)+"/ft";$("perFootAfter").textContent=money(feet>0?after/feet:0)+"/ft";$("grandTotal").textContent=money(after);const body=$("itemsBody");body.innerHTML=t.lines.map((i,index)=>'<tr><td>'+i.name+'</td><td>'+i.spec+'</td><td>'+i.qty+'</td><td>'+fmt(i.weight)+' kg</td><td>'+money(i.price)+'</td><td class="no-print">'+(index>0&&items.some(x=>x.kind===i.kind&&x.name===i.name&&x.spec===i.spec)?'<span class="note">Added line</span>':'')+'</td></tr>').join('');return t}
+function calculate(){const t=getTotals(),gst=t.price*.18,feet=Number($("rackLength").value)||0,after=t.price+gst;if($("quickGrand"))$("quickGrand").textContent=money(after);$("totalWeight").textContent=fmt(t.weight)+" kg";$("beforeGST").textContent=money(t.price);$("cgst").textContent=money(t.price*.09);$("sgst").textContent=money(t.price*.09);$("totalGST").textContent=money(gst);$("runningFeet").textContent=fmt(feet)+" ft";$("perFootBefore").textContent=money(feet>0?t.price/feet:0)+"/ft";$("perFootAfter").textContent=money(feet>0?after/feet:0)+"/ft";$("grandTotal").textContent=money(after);const body=$("itemsBody");body.innerHTML=t.lines.map((i,index)=>'<tr><td>'+i.name+'</td><td>'+i.spec+'</td><td>'+i.qty+'</td><td>'+fmt(i.weight)+' kg</td><td>'+money(i.price)+'</td><td class="no-print">'+(index>0&&items.some(x=>x.kind===i.kind&&x.name===i.name&&x.spec===i.spec)?'<span class="note">Added line</span>':'')+'</td></tr>').join('');return t}
 function updateChannelRate(){const g=$("channelType").value;$("channelRate").value=DATA.channels[g].rate}
 function saveCurrentPreset(){const name=prompt("Name this standard rack design:");if(!name)return;const presets=JSON.parse(localStorage.getItem("royalRackPresets")||"{}");presets[name]=getState();localStorage.setItem("royalRackPresets",JSON.stringify(presets));refreshPresets();alert("Standard design saved in this browser.");}
 function getState(){return {rackLength:$("rackLength").value,rackName:$("rackName").value,channelType:$("channelType").value,channelLength:$("channelLength").value,channelQty:$("channelQty").value,channelRate:$("channelRate").value,items,supportEnabled:$("supportEnabled").value,supportLength:$("supportLength").value,supportGauge:$("supportGauge").value,supportQty:$("supportQty").value,supportRate:$("supportRate").value,plateEnabled:$("plateEnabled").value,plateLength:$("plateLength").value,plateRate:$("plateRate").value,shelfRate:$("shelfRate").value}}
 function applyState(s){Object.keys(s).forEach(k=>{if($(k)&&typeof s[k]!=="object")$(k).value=s[k]});items=s.items||[];updateWeightDisplays();renderItems();renderPreview();calculate()}
 function refreshPresets(){const p=JSON.parse(localStorage.getItem("royalRackPresets")||"{}");$("preset").innerHTML=Object.keys(p).map(n=>'<option>'+n.replaceAll("&","&amp;").replaceAll("<","&lt;")+'</option>').join("");}
 $("bracketType").addEventListener("change",fillBrackets);$("bracketSize").addEventListener("change",()=>{});["shelfWidth","shelfDepth","shelfGauge","supportLength","supportGauge","plateLength"].forEach(id=>$(id).addEventListener("change",updateWeightDisplays));$("channelType").addEventListener("change",updateChannelRate);$("addBracket").addEventListener("click",addBracket);$("addShelf").addEventListener("click",addShelf);$("clearItems").addEventListener("click",()=>{items=[];renderItems();renderPreview()});$("calculate").addEventListener("click",calculate);$("print").addEventListener("click",()=>{calculate();window.print()});$("savePreset").addEventListener("click",saveCurrentPreset);$("config").addEventListener("change",()=>{$("presetWrap").classList.toggle("hidden",$("config").value!=="saved")});$("preset").addEventListener("change",()=>{const p=JSON.parse(localStorage.getItem("royalRackPresets")||"{}");if(p[$("preset").value])applyState(p[$("preset").value])});["rackLength","rackName","channelLength","channelQty","channelRate","supportEnabled","supportQty","supportRate","plateEnabled","plateRate"].forEach(id=>$(id).addEventListener("input",()=>{renderPreview()}));refreshPresets();fillBrackets();updateWeightDisplays();renderItems();calculate();
+
+$("quickCalculate").addEventListener("click",()=>{calculate();document.querySelectorAll(".panel").forEach(p=>{if(p.querySelector("#grandTotal"))p.open=true});$("grandTotal").scrollIntoView({behavior:"smooth",block:"center"})});
 </script>
 </body></html>
